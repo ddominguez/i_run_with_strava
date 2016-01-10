@@ -1,8 +1,25 @@
+* { box-sizing: border-box; }
 body {
-  padding: 50px;
+  padding: 10px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+#strava-activities {
+    display: table;
+    width: 100%;
+    border-spacing:.5em;
+    border-collapse:collapse;
+}
+
+.row {
+   display: table-row;
+ }
+
+.table-cell, .table-head{
+  display: table-cell;
+  padding:1em;
+  border:#f0f0f0 1px solid;
+}
+.table-head{
+    font-weight:bold;
 }
