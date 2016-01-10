@@ -24,6 +24,8 @@ function build_activity(activity) {
     var activity_row = '<div class="row">'
     +'<div class="table-cell">'+activity.name+'</div>'
     +'<div class="table-cell">'+format_data(activity.start_date_local)+'</div>'
+    +'<div class="table-cell">'+activity.location_city+', '+activity.location_state+'</div>'
+    +'<div class="table-cell">'+activity.distance+'</div>'
     +'</div>';
     $('#strava-activities').append(activity_row);
 }
