@@ -6,7 +6,14 @@
   </head>
   <body>
     <h1>{{ title }}</h1>
-    <div id="strava-activities"></div>
+    <div id="strava-activities">
+        <div class="row">
+            <div class="table-head">Name</div>
+            <div class="table-head">Date</div>
+            <div class="table-head">Location</div>
+            <div class="table-head">Distance</div>
+        </div>
+    </div>
 
   <script src='//code.jquery.com/jquery-2.2.0.min.js'> </script>
   <script src='/javascripts/i_run_with_strava.js'> </script>

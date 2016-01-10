@@ -1,3 +1,5 @@
+"use strict";
+
 $(document).ready(function() {
     $.ajax({
         url: '/strava_activities',
@@ -9,7 +11,7 @@ $(document).ready(function() {
 });
 
 function format_data(date_string) {
-    d = new Date(date_string);
+    var d = new Date(date_string);
     return d.getUTCHours()+":"+d.getUTCMinutes();
 }
 
@@ -25,7 +27,11 @@ function build_activity(activity) {
     +'<div class="table-cell">'+activity.name+'</div>'
     +'<div class="table-cell">'+format_data(activity.start_date_local)+'</div>'
     +'<div class="table-cell">'+activity.location_city+', '+activity.location_state+'</div>'
-    +'<div class="table-cell">'+activity.distance+'</div>'
+    +'<div class="table-cell">'+toMiles(activity.distance)+'</div>'
     +'</div>';
     $('#strava-activities').append(activity_row);
+}
+
+function toMiles(meters) {
+    return parseFloat(meters * 0.000621371192237).toFixed(2) + ' mi';
 }
