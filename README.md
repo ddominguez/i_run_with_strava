@@ -15,4 +15,5 @@ Strava Developer Application - http://labs.strava.com/developers/
 
 # Install and Run
 npm install
+
 STRAVA_TOKEN=YOUR_STRAVA_TOKEN DEBUG=i_run_with_strava:* node ./bin/www
