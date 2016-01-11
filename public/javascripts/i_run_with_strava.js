@@ -10,9 +10,9 @@ $(document).ready(function() {
     });
 });
 
-function format_data(date_string) {
+function format_date(date_string) {
     var d = new Date(date_string);
-    return d.getUTCHours()+":"+d.getUTCMinutes();
+    return getMonth(d.getMonth()) + ' ' +d.getDay() + ', ' +d.getFullYear(); 
 }
 
 function show_activities(activities) {
@@ -25,7 +25,7 @@ function show_activities(activities) {
 function build_activity(activity) {
     var activity_row = '<div class="row">'
     +'<div class="table-cell">'+activity.name+'</div>'
-    +'<div class="table-cell">'+format_data(activity.start_date_local)+'</div>'
+    +'<div class="table-cell">'+format_date(activity.start_date_local)+'</div>'
     +'<div class="table-cell">'+activity.location_city+', '+activity.location_state+'</div>'
     +'<div class="table-cell">'+toMiles(activity.distance)+'</div>'
     +'</div>';
@@ -34,4 +34,22 @@ function build_activity(activity) {
 
 function toMiles(meters) {
     return parseFloat(meters * 0.000621371192237).toFixed(2) + ' mi';
+}
+
+function getMonth(i) {
+    var months = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+    ];
+    return months[i];
 }
