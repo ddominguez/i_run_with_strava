@@ -27,7 +27,7 @@ function show_activities(activities) {
 
 function build_activity(activity) {
     var activity_row = '<div class="row">'
-    +'<div class="table-cell">'+activity.name+'</div>'
+    +'<div class="table-cell"><a href="//www.strava.com/activities/'+activity.id+'">'+activity.name+'</a></div>'
     +'<div class="table-cell">'+format_date(activity.start_date_local)+'</div>'
     +'<div class="table-cell">'+activity.location_city+', '+activity.location_state+'</div>'
     +'<div class="table-cell">'+toMiles(activity.distance)+'</div>'
