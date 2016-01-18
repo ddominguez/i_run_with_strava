@@ -4,7 +4,7 @@ var request = require('request');
 
 var STRAVA_TOKEN = process.env.STRAVA_TOKEN || null;
 
-/* GET home page. */
+// Render index page
 router.get('/', function(req, res, next) {
     res.render('index', {
         title: 'I Run With Strava'
@@ -12,6 +12,8 @@ router.get('/', function(req, res, next) {
 });
 
 
+// Make request to strava and
+// return strava activities
 router.get('/strava_activities', function(req, res, next) {
     // check if token exists
     if (!STRAVA_TOKEN) {
@@ -30,7 +32,7 @@ router.get('/strava_activities', function(req, res, next) {
             var data = JSON.parse(body);
             res.send(data);
         } else {
-            res.send('There was a problem with the request.')
+            res.status(400).send('There was a problem with the request.')
         }
     };
     var activities = request(options, callback);
