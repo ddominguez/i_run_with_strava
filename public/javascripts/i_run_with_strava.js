@@ -5,14 +5,17 @@ $(document).ready(function() {
         url: '/strava_activities',
         type: 'GET'
     })
-    .success(function(data, textStatus, jqXHR) {
+    .done(function(data, textStatus, jqXHR) {
         show_activities(data);
+    })
+    .fail(function(data, textStatus, jqXHR) {
+        showError(data.responseText);
     });
 });
 
 function format_date(date_string) {
     var d = new Date(date_string);
-    return getMonth(d.getMonth()) + ' ' +d.getDay() + ', ' +d.getFullYear(); 
+    return getMonth(d.getMonth()) + ' ' +d.getDate() + ', ' +d.getFullYear();
 }
 
 function show_activities(activities) {
@@ -52,4 +55,9 @@ function getMonth(i) {
         'December'
     ];
     return months[i];
+}
+
+function showError(message) {
+    $('#strava-activities').html('An error has occurred.');
+    console.error(message);
 }
