@@ -23,3 +23,13 @@ body {
 .table-head{
     font-weight:bold;
 }
+
+#map {
+    display: none;
+    border: 1px solid;
+    height: 280px;
+    width: 765px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
