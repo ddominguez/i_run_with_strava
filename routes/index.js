@@ -15,7 +15,8 @@ router.get('/', function(req, res, next) {
 router.get('/strava_activities', function(req, res, next) {
     // check if token exists
     if (!STRAVA_TOKEN) {
-        res.send('token not found.')
+        res.status(400).send('token not found.');
+        return;
     }
 
     var options = {
