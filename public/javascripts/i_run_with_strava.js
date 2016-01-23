@@ -15,7 +15,18 @@ $(document).ready(function() {
 
     // show activity map
     $('#strava-activities').on('click', 'div.activity', showMap);
+
+    $('#strava-activities').on('click','div.table-cell a', function(event) {
+        event.stopPropagation();
+    })
+
+    // close activity map
+    $('#map-container').on('click', closeMap)
 });
+
+function closeMap() {
+    $(this).hide();
+}
 
 function formatDate(date_string) {
     var d = new Date(date_string);
@@ -30,7 +41,8 @@ function showActivities(activities) {
 }
 
 function buildActivity(activity) {
-    var activity_row = '<div class="row activity" data-lat="'+activity.start_latitude+'" data-lng="'+activity.start_longitude+'" data-polyline="'+activity.map.summary_polyline+'">'
+    var activity_row = '<div class="row activity"  data-id="'+activity.id+'" data-lat="'+activity.start_latitude+'" '
+    +'data-lng="'+activity.start_longitude+'" data-polyline="'+activity.map.summary_polyline+'">'
     +'<div class="table-cell"><a href="//www.strava.com/activities/'+activity.id+'">'+activity.name+'</a></div>'
     +'<div class="table-cell">'+formatDate(activity.start_date_local)+'</div>'
     +'<div class="table-cell">'+activity.location_city+', '+activity.location_state+'</div>'
@@ -67,11 +79,17 @@ function showError(message) {
 }
 
 function showMap() {
-    $('#map').hide();
-    createMap($(this).data('lat'), $(this).data('lng'), $(this).data('polyline'));
+    // If the map-container data-id is the same as the selected data-id, then it's hidden
+    // Don't re-create the map if it's hidden
+    if ($(this).data('id') === $('#map-container').data('id')) {
+        $('#map-container').show();
+        return;
+    }
+    $('#map-container').hide();
+    createMap($(this).data('lat'), $(this).data('lng'), $(this).data('polyline'), $(this).data('id'));
 }
 
-function createMap(latitude, longitude, polyline) {
+function createMap(latitude, longitude, polyline, id) {
     var mapOptions = {
       center: new google.maps.LatLng(latitude, longitude),
       zoom: 14,
@@ -91,7 +109,7 @@ function createMap(latitude, longitude, polyline) {
     });
     poly.setMap(map);
     zoomToObject(poly, map);
-    $('#map').show();
+    $('#map-container').data('id', id).show();
 }
 
 function decodeLevels(encodedLevelsString) {

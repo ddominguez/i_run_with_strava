@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <div id="map"></div>
+    <div id="map-container"><div id="map"></div></div>
     <script src='//code.jquery.com/jquery-2.2.0.min.js'> </script>
     <script src='/javascripts/i_run_with_strava.js'> </script>
     <script src="//maps.googleapis.com/maps/api/js?libraries=geometry"></script>

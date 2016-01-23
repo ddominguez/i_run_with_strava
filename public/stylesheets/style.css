@@ -20,16 +20,28 @@ body {
   padding:1em;
   border:#f0f0f0 1px solid;
 }
-.table-head{
+
+.table-head {
     font-weight:bold;
 }
 
-#map {
+.table-cell {
+    cursor: pointer;
+}
+
+#map-container {
     display: none;
     border: 1px solid;
-    height: 280px;
-    width: 765px;
     position: absolute;
     top: 0;
     left: 0;
+    background-color:rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+}
+
+#map {
+    height: 350px;
+    width: 75%;
+    margin: auto;
 }
