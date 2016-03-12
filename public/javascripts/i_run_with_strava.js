@@ -45,7 +45,6 @@ function buildActivity(activity) {
     +'data-lng="'+activity.start_longitude+'" data-polyline="'+activity.map.summary_polyline+'">'
     +'<div class="table-cell"><a href="//www.strava.com/activities/'+activity.id+'">'+activity.name+'</a></div>'
     +'<div class="table-cell">'+formatDate(activity.start_date_local)+'</div>'
-    +'<div class="table-cell">'+activity.location_city+', '+activity.location_state+'</div>'
     +'<div class="table-cell">'+toMiles(activity.distance)+'</div>'
     +'</div>';
     $('#strava-activities').append(activity_row);
