@@ -44,8 +44,8 @@ function buildActivity(activity) {
     var activity_row = '<div class="row activity"  data-id="'+activity.id+'" data-lat="'+activity.start_latitude+'" '
     +'data-lng="'+activity.start_longitude+'" data-polyline="'+activity.map.summary_polyline+'">'
     +'<div class="table-cell"><a href="//www.strava.com/activities/'+activity.id+'">'+activity.name+'</a></div>'
-    +'<div class="table-cell">'+formatDate(activity.start_date_local)+'</div>'
-    +'<div class="table-cell">'+toMiles(activity.distance)+'</div>'
+    +'<div class="table-cell activity-date">'+formatDate(activity.start_date_local)+'</div>'
+    +'<div class="table-cell activity-distance">'+toMiles(activity.distance)+'</div>'
     +'</div>';
     $('#strava-activities').append(activity_row);
 }
@@ -81,10 +81,12 @@ function showMap() {
     // If the map-container data-id is the same as the selected data-id, then it's hidden
     // Don't re-create the map if it's hidden
     if ($(this).data('id') === $('#map-container').data('id')) {
-        $('#map-container').show();
+        $('#map-container').attr('style', 'display: -webkit-flex; display: flex');
         return;
     }
     $('#map-container').hide();
+    var date_text = $(this).children('.activity-date').get(0).textContent;
+    var distance_text = $(this).children('.activity-distance').get(0).textContent;
     createMap($(this).data('lat'), $(this).data('lng'), $(this).data('polyline'), $(this).data('id'));
 }
 
@@ -108,7 +110,7 @@ function createMap(latitude, longitude, polyline, id) {
     });
     poly.setMap(map);
     zoomToObject(poly, map);
-    $('#map-container').data('id', id).show();
+    $('#map-container').data('id', id).attr('style', 'display: -webkit-flex; display: flex');
 }
 
 function decodeLevels(encodedLevelsString) {
