@@ -21,7 +21,12 @@ $(document).ready(function() {
     })
 
     // close activity map
-    $('#map-container').on('click', closeMap)
+    $('#map-container').on('click', closeMap);
+
+    // prevent close activity map when map is clicked
+    $('#map').on('click', function() {
+        return false;
+    });
 });
 
 function closeMap() {
